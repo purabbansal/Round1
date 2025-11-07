@@ -2,8 +2,18 @@ import React, { Suspense, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Environment, ContactShadows } from '@react-three/drei'
 import { Skateboard } from './Skateboard'
+import * as THREE from 'three'
 
-export function SkateboardScene(props: any) {
+type SkateboardSceneProps = {
+  wheelTextureURLs: string[]
+  wheelTextureURL: string
+  deckTextureURLs: string[]
+  deckTextureURL: string
+  truckColor: string
+  boltColor: string
+}
+
+export function SkateboardScene(props: SkateboardSceneProps) {
   const skateboardRef = useRef<THREE.Group>(null)
 
   // Subtle idle animation

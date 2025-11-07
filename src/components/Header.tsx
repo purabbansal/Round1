@@ -2,7 +2,6 @@ import Link from "next/link"
 import { ButtonLink } from "./ButtonLink"
 import { Logo } from "./Logo"
 import { createClient } from "@/prismicio"
-import { PrismicNextLink } from "@prismicio/next"
 
 type Props = Record<string, never>
 

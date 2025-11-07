@@ -6,6 +6,7 @@ import { Heading } from "@/components/Heading";
 import { SkateboardProduct } from "./SkateboardProduct";
 import { SlideIn } from "@/components/SlideIn";
 import clsx from "clsx";
+import Image from "next/image";
 
 /**
  * Props for `ProductGrid`.
@@ -34,10 +35,12 @@ const ProductGrid: FC<ProductGridProps> = ({ slice }) => {
             <PrismicText field={slice.primary.heading} />
           </Heading>
 
-          <img
+          <Image
             src="/spray-underline.svg"
             alt=""
-            className="mx-auto mt-[-0.5rem] w-52 opacity-90 pointer-events-none select-none"
+            width={208} // w-52 = 13rem = 208px
+            height={20}
+            className="mx-auto mt-[-0.5rem] opacity-90 pointer-events-none select-none"
             aria-hidden="true"
           />
         </div>
@@ -59,20 +62,20 @@ const ProductGrid: FC<ProductGridProps> = ({ slice }) => {
           "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         )}
       >
-        {products.map(({ skateboard }, idx) => (
+        {products.map(({ skateboard }, idx) => skateboard && (
           <div
-            key={skateboard.id}
+            key={idx}
             className="group relative perspective-1000"
             style={{ animationDelay: `${idx * 0.12}s` }}
           >
             {/* Tilt + Glow Card */}
-            <div className="transform transition-transform duration-500 hover:scale-105 hover:rotate-1 hover:-rotate-2 hover:shadow-2xl rounded-xl overflow-hidden">
+            <div className="transform transition-transform duration-500 hover:scale-105 hover:-rotate-2 hover:shadow-2xl rounded-xl overflow-hidden">
               <div className="relative bg-black/30 backdrop-blur-md rounded-xl shadow-lg ring-1 ring-white/10 hover:ring-brand-lime/40 transition-all duration-500">
                 {/* Overlay Glow */}
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-lime/20 via-transparent to-transparent opacity-0 group-hover:opacity-30 rounded-xl pointer-events-none transition-opacity duration-500" />
                 
                 {/* Skateboard Product */}
-                <SkateboardProduct id={skateboard.id} />
+                <SkateboardProduct id={skateboard.uid || ''} />
               </div>
             </div>
 
@@ -85,9 +88,11 @@ const ProductGrid: FC<ProductGridProps> = ({ slice }) => {
       </div>
 
       {/* Rough Paper Texture Overlay */}
-      <img
+      <Image
         src="/paper-texture.png"
         alt=""
+        width={1920}
+        height={1080}
         className="pointer-events-none absolute inset-0 opacity-5 mix-blend-overlay w-full h-full select-none"
         aria-hidden="true"
       />
