@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-texture {
+  background-image: url('/bg-texture.webp');
+  background-size: 720px 460px;
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.button-cutout {
+  position: relative;
+  filter: drop-shadow(0 1px 0 #000) drop-shadow(-1px 0 0 #000)
+    drop-shadow(1px 0 0 #000) drop-shadow(0 -1px 0 #000)
+    drop-shadow(8px 8px 0 #000);
+
+  &:hover {
+    filter: drop-shadow(0 1px 0 #000) drop-shadow(-1px 0 0 #000)
+      drop-shadow(1px 0 0 #000) drop-shadow(0 -1px 0 #000)
+      drop-shadow(2px 2px 0 #000);
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: calc(100% - 1px);
+    content: "";
+    background: inherit;
+    width: 1rem;
+    height: 100%;
+    clip-path: polygon(
+      23% 19%,
+      0 0,
+      100% 0,
+      100% 100%,
+      0 100%,
+      29% 79%,
+      9% 80%,
+      0 33%
+    );
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: calc(100% - 1px);
+    content: "";
+    background: inherit;
+    width: 1rem;
+    height: 100%;
+    clip-path: polygon(
+      100% 0,
+      74% 28%,
+      100% 29%,
+      100% 70%,
+      84% 78%,
+      100% 100%,
+      0 100%,
+      0 0
+    );
+  }
+}
+
+.stack-layout {
+  display: grid;
+  grid-template-areas: "stack";
+  place-items: center;
+}
+
+.stack-layout > * {
+  grid-area: stack;
+}
+
+.skater-scribble-path {
+  opacity: 0.8;
+  stroke-dasharray: 2300;
+  stroke-dashoffset: -2300;
+  transition: stroke-dashoffset 1s ease-in-out 0.2s;
+  transform-origin: center center;
+}
+
+.skater:hover .skater-scribble-path {
+  stroke-dashoffset: 0;
+}
+
+.slide-in-hidden {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+@keyframes slide-in {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ---------- ✅ NEW BRAND COLORS ---------- */
+:root {
+  --brand-blue: #6C38FF;   /* Cyber Purple */
+  --brand-orange: #FF3EB5; /* Neon Pink Accent */
+  --brand-navy: #111216;   /* Dark Cinematic Charcoal */
+  --brand-lime: #C8FFD4;   /* Soft Mint Pastel */
+}
+
+.bg-brand-blue { background-color: var(--brand-blue); }
+.bg-brand-orange { background-color: var(--brand-orange); }
+.bg-brand-navy { background-color: var(--brand-navy); }
+.bg-brand-lime { background-color: var(--brand-lime); }
+
+
+/* ---------------------------------------------------
+   ✅ VIDEO ANIMATION YOU REQUESTED (ADDED CLEANLY)
+--------------------------------------------------- */
+
+@keyframes videoFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes videoZoom {
+  0% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.animate-videoFade {
+  animation: videoFade 1s ease-out forwards;
+}
+
+.animate-videoZoom {
+  animation: videoZoom 12s ease-out forwards;
+}
+
+
+
+@keyframes footerZoom {
+  0% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.animate-footerZoom {
+  animation: footerZoom 14s ease-out forwards;
+}
+
+
+.slide-in-hidden {
+  opacity: 0;
+  transform: translateY(var(--slide-distance, 50px));
+}
+
+/* Slide up */
+@keyframes slide-in-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide down */
+@keyframes slide-in-down {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide left */
+@keyframes slide-in-left {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide right */
+@keyframes slide-in-right {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Direction-specific hidden state */
+.slide-in-up { transform: translateY(var(--slide-distance, 50px)); }
+.slide-in-down { transform: translateY(calc(-1 * var(--slide-distance, 50px))); }
+.slide-in-left { transform: translateX(var(--slide-distance, 50px)); }
+.slide-in-right { transform: translateX(calc(-1 * var(--slide-distance, 50px))); }
+
+
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.animate-blob {
+  animation: blob 8s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+
+/* Floating logos */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(10px); }
+}
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+/* Slide-in animation */
+.slide-in-up {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slide-in-up 0.6s forwards ease;
+}
+.slide-in-up.delay-200 {
+  animation-delay: 0.2s;
+}
+.slide-in-up.delay-400 {
+  animation-delay: 0.4s;
+}
+@keyframes slide-in-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
